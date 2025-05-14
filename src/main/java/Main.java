@@ -48,16 +48,24 @@ class Main {
         System.out.println("2 - aby wpisać wiek i date urodzenia");
         System.out.println("3 - aby wyszukać studenta po imieniu");
         System.out.println("0 - aby wyjść z programu");
-          int wybor = -1;
+          
+        int wybor = -1;
+        while(true){
         try{
             wybor = scan.nextInt();
+            if (wybor < 0 || wybor > 3){
+                System.out.println("Błędny wybór");
+                continue;
+            }
+            break;
         }
         catch(InputMismatchException e)
             {
-            System.out.println("Błędny wybór");
+            System.out.println("Błędny wybór, wybierz ponownie");
             scan.nextLine();
         }
-            return wybor;
+        }
+          return wybor;
         
     }
 
