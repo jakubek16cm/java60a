@@ -11,7 +11,7 @@ Poniższe zadania będą się sprowadzały do modyfikacji bazowego kodu. Proces 
 
 //Commit6_1. Na podstawie analogii do wyjątku WrongStudentName utwórz i obsłuż wyjątki WrongAge oraz WrongDateOfBirth. 
 //Niepoprawny wiek – gdy jest mniejszy od 0 lub większy niż 100. Niepoprawna data urodzenia – gdy nie jest zapisana w formacie DD-MM-YYYY, np. 28-02-2023.
-
+import java.util.Collection;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -58,27 +58,39 @@ class Main {
     }
 
     public static void exercise1() throws IOException, WrongStudentName {
-        var name = ReadName();
+        String name = ReadName();
+        int age;
+        while(true)
+        {
         System.out.println("Podaj wiek: ");
-        var age = scan.nextInt();
+            if(scan.hasNextInt()){
+                age = scan.nextInt();
+        if(age > 0 && age < 100){
+            break;
+        }
+            else{
+                System.out.println("Podaj poprawny wiek");
+            }
+            }
         scan.nextLine();
         System.out.println("Podaj datę urodzenia DD-MM-YYYY");
-        var date = scan.nextLine();
+        String date = scan.nextLine();
         (new Service()).addStudent(new Student(name, age, date));
+            
     }
 
-    public static void exercise2() throws IOException {
-        var students = (new Service()).getStudents();
-        for(Student current : students) {
-            System.out.println(current.ToString());
+        public static void exercise2() throws IOException {        
+            Collection<Student> students = (new Service()).getStudents();
+            for(Student current : students) {
+                System.out.println(current.ToString());
         }
     }
 
     public static void exercise3() throws IOException {
         scan.nextLine();
         System.out.println("Podaj imię: ");
-        var name = scan.nextLine();
-        var wanted = (new Service()).findStudentByName(name);
+        String name = scan.nextLine();
+        Student wanted = (new Service()).findStudentByName(name);
         if(wanted == null)
             System.out.println("Nie znaleziono...");
         else {
