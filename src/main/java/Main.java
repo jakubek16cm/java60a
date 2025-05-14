@@ -76,10 +76,9 @@ class Main {
         System.out.println("Podaj datę urodzenia DD-MM-YYYY");
         String date = scan.nextLine();
         (new Service()).addStudent(new Student(name, age, date));
-            
     }
-
-        public static void exercise2() throws IOException {        
+    
+    public static void exercise2() throws IOException {        
             Collection<Student> students = (new Service()).getStudents();
             for(Student current : students) {
                 System.out.println(current.ToString());
